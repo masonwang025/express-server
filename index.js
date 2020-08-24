@@ -1,14 +1,11 @@
 const express = require("express");
 const path = require("path");
-const members = require("./json-data/members.js");
+const logger = require("./middleware/logger");
 
 const app = express();
 
-// routes
-// simple REST api
-app.get("/api/members", (req, res) => {
-  res.json(members);
-});
+// members api routes
+app.use("/api/members", require("./routes/api/members"));
 
 // set static folder
 app.use(express.static(path.join(__dirname, "public")));
